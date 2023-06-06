@@ -2,13 +2,6 @@
 import streamlit as st
 from langchain import PromptTemplate
 from langchain.llms import OpenAI
-import openai
-
-import os
-import openai
-
-openai.api_key = os.environ["OPENAI_API_KEY"]
-
 
 template = """
     Below is an email that may be poorly worded and structured.
@@ -91,17 +84,16 @@ if len(email_input.split(" ")) > 700:
     st.stop()
 
 def update_text_with_example():
-    print ("in updated")
+
     st.session_state.email_input = "Sally I am starts work at yours monday from dave"
 
 st.button("*See An Example*", type='secondary', help="Click to see an example of the email you will be converting.", on_click=update_text_with_example)
 
 
 st.markdown("### Your Converted Email:")
-openai_api_key = openai.api_key
 
 if email_input:
-    print (openai_api_key)
+
     if not openai_api_key:
         st.warning('Please insert OpenAI API Key. Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', icon="⚠️")
         st.stop()
