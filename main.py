@@ -3,6 +3,13 @@ import streamlit as st
 from langchain import PromptTemplate
 from langchain.llms import OpenAI
 
+import os
+import openai
+
+def get_api_key():
+    myopenaikey = openai.api_key = os.environ["OPENAI_API_KEY"]
+    return myopenaikey
+
 template = """
     Below is an email that may be poorly worded and structured.
     Your goal is to:
@@ -59,11 +66,11 @@ with hcol3:
 
 st.markdown("## Enter Your Email To Convert")
 
-def get_api_key():
-    input_text = st.text_input(label="OpenAI API Key ",  placeholder="Ex: sk-gvPyp08FtY1pzC...", key="openai_api_key_input")
-    return input_text
+#def get_api_key():
+#    input_text = st.text_input(label="OpenAI API Key ",  placeholder="Ex: sk-gvPyp08FtY1pzC...", key="openai_api_key_input")
+#    return input_text
 
-openai_api_key = get_api_key()
+#openai_api_key = get_api_key()
 
 
 col1, col2 = st.columns(2)
@@ -100,6 +107,7 @@ st.button("*See An Example*", type='secondary', help="Click to see an example of
 st.markdown("### Your Converted Email:")
 
 if email_input:
+    openai_api_key = get_api_key()
 
     if not openai_api_key:
         st.warning('Please insert OpenAI API Key. Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', icon="⚠️")
