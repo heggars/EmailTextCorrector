@@ -99,7 +99,9 @@ st.button("*See An Example*", type='secondary', help="Click to see an example of
 
 st.markdown("### Your Converted Email:")
 openai_api_key = openai.api_key
+
 if email_input:
+    print (openai_api_key)
     if not openai_api_key:
         st.warning('Please insert OpenAI API Key. Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', icon="⚠️")
         st.stop()
