@@ -47,7 +47,7 @@ prompt = PromptTemplate(
 def load_LLM() :
     """Logic for loading the chain you want to use should go here."""
     # Make sure your openai_api_key is set as an environment variable
-    llm = OpenAI(temperature=.3)
+    llm = OpenAI(temperature=.4)
     return llm
 
 st.set_page_config(page_title="Globalize Email", page_icon=":robot:")
