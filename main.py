@@ -3,10 +3,12 @@ import streamlit as st
 from langchain import PromptTemplate
 from langchain.llms import OpenAI
 import openai
+
 import os
+import openai
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
-myAPIKey = openai.api_key
+
 
 template = """
     Below is an email that may be poorly worded and structured.
@@ -42,10 +44,10 @@ prompt = PromptTemplate(
     template=template,
 )
 
-def load_LLM(openai_api_key):
+def load_LLM() :
     """Logic for loading the chain you want to use should go here."""
     # Make sure your openai_api_key is set as an environment variable
-    llm = OpenAI(temperature=.3, openai_api_key=openai_api_key)
+    llm = OpenAI(temperature=.3)
     return llm
 
 st.set_page_config(page_title="Globalize Email", page_icon=":robot:")
@@ -96,13 +98,13 @@ st.button("*See An Example*", type='secondary', help="Click to see an example of
 
 
 st.markdown("### Your Converted Email:")
-
+openai_api_key = openai.api_key
 if email_input:
-    if not myAPIKey:
+    if not openai_api_key:
         st.warning('Please insert OpenAI API Key. Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', icon="⚠️")
         st.stop()
 
-    llm = load_LLM(openai_api_key=myAPIKey)
+    llm = load_LLM()
 
     prompt_with_email = prompt.format(tone=option_tone, dialect=option_dialect, email=email_input)
 
