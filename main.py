@@ -59,6 +59,13 @@ with hcol3:
 
 st.markdown("## Enter Your Email To Convert")
 
+def get_api_key():
+    input_text = st.text_input(label="OpenAI API Key ",  placeholder="Ex: sk-gvPyp08FtY1pzC...", key="openai_api_key_input")
+    return input_text
+
+openai_api_key = get_api_key()
+
+
 col1, col2 = st.columns(2)
 with col1:
     option_tone = st.selectbox(
